@@ -1,0 +1,7 @@
+@if(list.length === 0){
+<p>Aucun jeux vidéos présents</p>
+}
+@else{
+<app-table-video-games [items]="list" tableTitle="Liste des jeux vidéos"
+    (askToRemoveOneElement)="toRemoveOneElementParent($event)" (deleteGame)="handleDelete($event)" />
+}
