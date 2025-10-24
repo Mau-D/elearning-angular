@@ -1,4 +1,5 @@
 <h1>Ajout d'un jeu vidéo</h1>
+{{videoGame | json }}
 <form #videoGameForm="ngForm" (ngSubmit)="save()">
     <label>Titre</label>
     <input name="label" required type="text" [(ngModel)]="videoGame.label" /><label>Titre</label>

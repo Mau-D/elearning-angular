@@ -1,0 +1,6 @@
+@let peopleResult = people$ | async;
+<select>
+  @for (item of peopleResult?.results; track item.uid){
+  <option value="{{item.uid}}">{{item.name}}</option>
+  }
+</select>

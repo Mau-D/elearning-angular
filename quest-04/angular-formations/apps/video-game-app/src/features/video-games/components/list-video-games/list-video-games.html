@@ -1,8 +1,12 @@
-@if(list.length === 0){
+@if(list.length > 0) {
+<app-filter-video-games />
+<app-table-video-games
+  [items]="list"
+  tableTitle="Liste des jeux vidéos"
+  (askToRemoveOneElement)="toRemoveOneElementParent($event)"
+  (deleteGame)="handleDelete($event)"
+/>
+} @else{
 <p>Aucun jeux vidéos présents</p>
-}
-@else{
-<app-table-video-games [items]="list" tableTitle="Liste des jeux vidéos"
-    (askToRemoveOneElement)="toRemoveOneElementParent($event)" (deleteGame)="handleDelete($event)" />
 }
 <app-add-video-game />

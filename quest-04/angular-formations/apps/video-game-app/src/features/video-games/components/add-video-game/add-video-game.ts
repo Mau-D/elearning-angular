@@ -1,10 +1,11 @@
 import { Component, viewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { VideoGame } from '../../../models/video-games';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-video-game',
-  imports: [FormsModule],
+  imports: [FormsModule, JsonPipe],
   templateUrl: './add-video-game.html',
   styleUrl: './add-video-game.css',
 })
