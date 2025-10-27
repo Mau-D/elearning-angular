@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PeopleApiResult } from './models';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root', //au début de l'application, donc singleton
@@ -10,7 +11,7 @@ export class GetAllPeopleService {
   private readonly http = inject(HttpClient);
 
   getAll(): Observable<PeopleApiResult> {
-    return this.http.get<PeopleApiResult>('https://swapi.tech/api/people');
+    return this.http.get<PeopleApiResult>(environment.apis.person.url);
     // return new Observable((Subscriber) => {
     //   setTimeout(() => {
     //     const result: PeopleApiResult = {
