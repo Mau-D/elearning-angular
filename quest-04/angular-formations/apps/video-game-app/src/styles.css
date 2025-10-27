@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-table{
-    background-color: aqua;
+table {
+  background-color: aqua;
+}
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+  font-size: 3rem;
 }
