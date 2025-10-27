@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { filter, Observable, tap } from 'rxjs';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { filter, Observable, Subscription, tap } from 'rxjs';
 import { GetAllPersonApplicatif } from '../../services/get-all-person.applicatif';
 import { Person } from '../../services/models/person';
 
@@ -10,7 +10,8 @@ import { Person } from '../../services/models/person';
   templateUrl: './filter-video-games.html',
   styleUrl: './filter-video-games.css',
 })
-export class FilterVideoGames {
+export class FilterVideoGames implements OnInit, OnDestroy {
+  private readonly subscription = new Subscription();
   private readonly peopleService = inject(GetAllPersonApplicatif);
   // people$: Observable<Person[]> = this.peopleService.getAll().pipe(
   //   map((result) =>
@@ -18,6 +19,19 @@ export class FilterVideoGames {
   //   ) //appelé à chaque next de l'Observable
   // );
   people$: Observable<Person[]> = this.peopleService.getAll().pipe(
-    filter(items => items.length > 0),
-    tap(items => console.info(items)));
+    filter((items) => items.length > 0),
+    tap((items) => console.info(items))
+  );
+
+  ngOnInit(): void {
+    const currentSubscription = this.people$.subscribe({
+      next: (items) => {
+        console.info(items);
+      },
+    });
+    this.subscription.add(currentSubscription);
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }
