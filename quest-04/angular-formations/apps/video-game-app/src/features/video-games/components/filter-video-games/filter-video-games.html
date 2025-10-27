@@ -1,5 +1,7 @@
 <!-- Attention subscribe, donc appel l'API -->
-@let peopleResult = people$ | async;
+<!-- @let peopleResult = people$ | async; -->
+@let peopleResult = people$$();
+
 <select>
   <!-- @for (item of peopleResult?.results; track item.uid){ -->
   @for (item of peopleResult; track item.id){
