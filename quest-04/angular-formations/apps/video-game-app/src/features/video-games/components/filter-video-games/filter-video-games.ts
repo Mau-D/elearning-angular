@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { GetAllPeopleService } from '../../services/get-all-people-service';
 import { AsyncPipe } from '@angular/common';
-import { map, Observable } from 'rxjs';
-import { PeopleApiResult } from '../../services/models';
+import { Component, inject } from '@angular/core';
+import { filter, Observable, tap } from 'rxjs';
+import { GetAllPersonApplicatif } from '../../services/get-all-person.applicatif';
 import { Person } from '../../services/models/person';
 
 @Component({
@@ -12,10 +11,13 @@ import { Person } from '../../services/models/person';
   styleUrl: './filter-video-games.css',
 })
 export class FilterVideoGames {
-  private readonly peopleService = inject(GetAllPeopleService);
+  private readonly peopleService = inject(GetAllPersonApplicatif);
+  // people$: Observable<Person[]> = this.peopleService.getAll().pipe(
+  //   map((result) =>
+  //     result.results.map((item) => ({ id: +item.uid, surname: item.name }))
+  //   ) //appelé à chaque next de l'Observable
+  // );
   people$: Observable<Person[]> = this.peopleService.getAll().pipe(
-    map((result) =>
-      result.results.map((item) => ({ id: +item.uid, surname: item.name }))
-    ) //appelé à chaque next de l'Observable
-  );
+    filter(items => items.length > 0),
+    tap(items => console.info(items)));
 }
