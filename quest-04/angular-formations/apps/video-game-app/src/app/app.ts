@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from "@angular/forms";
-import { RouterOutlet } from "@angular/router";
+import { RouterOutlet, RouterLinkWithHref } from "@angular/router";
 
 
 @Component({
-  imports: [MatSliderModule, FormsModule, RouterOutlet],
+  imports: [MatSliderModule, FormsModule, RouterOutlet, RouterLinkWithHref],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',

@@ -1,9 +1,12 @@
 <h1>Vidéo game app !!!</h1>
+<ul>
+  <li>
+    <a routerLink="/">Accueil</a>
+  </li>
+  <li>
+    <a routerLink="/jeux-videos">Mes jeux vidéos</a>
+  </li>
+</ul>
 
-<mat-slider min="0" max="100" step="1" discrete>
-  <input matSliderThumb [(ngModel)]="sliderValue" />
-</mat-slider>
-
-<p>Valeur actuelle : {{ sliderValue }}</p>
 <router-outlet></router-outlet>
 <!-- <app-list-video-games /> -->
