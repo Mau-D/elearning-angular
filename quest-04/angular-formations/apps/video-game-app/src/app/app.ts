@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ListVideoGames } from '../features/video-games/components/list-video-games/list-video-games';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from "@angular/forms";
+import { RouterOutlet } from "@angular/router";
 
 
 @Component({
-  imports: [ListVideoGames, MatSliderModule, FormsModule],
+  imports: [MatSliderModule, FormsModule, RouterOutlet],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
