@@ -8,11 +8,15 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/video-game-app",
         "browser": "apps/video-game-app/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/video-game-app/tsconfig.app.json",
         "assets": [
           {
@@ -21,6 +25,7 @@
           }
         ],
         "styles": [
+          "apps/video-game-app/src/custom-theme.scss",
           "apps/video-game-app/src/styles.css",
           "apps/video-game-app/src/style-bis.css"
         ]
@@ -79,7 +84,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/video-game-app/jest.config.ts",
         "tsConfig": "apps/video-game-app/tsconfig.spec.json"
