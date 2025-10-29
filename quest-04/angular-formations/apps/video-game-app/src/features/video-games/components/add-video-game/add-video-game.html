@@ -1,9 +1,19 @@
 <h1>Ajout d'un jeu vidéo</h1>
 {{videoGame | json }}
 <form #videoGameForm="ngForm" (ngSubmit)="save()">
-    <label>Titre</label>
-    <input name="label" required type="text" [(ngModel)]="videoGame.label" /><label>Titre</label>
-    <label>Année</label>
-    <input name="year" required type="number" [(ngModel)]="videoGame.year" />
-    <button [disabled]="!videoGameForm.form.valid" type="submit">Ajouter</button>
+  <div class="row">
+    <div class="col">
+      <label for="label">Titre</label>
+      <input name="label" required type="text" [(ngModel)]="videoGame.label" />
+    </div>
+    <div class="col">
+      <label for="year">Année</label>
+      <input name="year" required type="number" [(ngModel)]="videoGame.year" />
+    </div>
+    <div class="col">
+      <button [disabled]="!videoGameForm.form.valid" type="submit">
+        Ajouter
+      </button>
+    </div>
+  </div>
 </form>

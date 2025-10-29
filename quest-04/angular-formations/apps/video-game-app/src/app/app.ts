@@ -3,6 +3,7 @@ import { ListVideoGames } from '../features/video-games/components/list-video-ga
 import {MatSliderModule} from '@angular/material/slider';
 import { FormsModule } from "@angular/forms";
 
+
 @Component({
   imports: [ListVideoGames, MatSliderModule, FormsModule],
   selector: 'app-root',

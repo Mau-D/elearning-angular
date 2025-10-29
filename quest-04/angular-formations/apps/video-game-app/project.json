@@ -25,6 +25,7 @@
           }
         ],
         "styles": [
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
           "apps/video-game-app/src/custom-theme.scss",
           "apps/video-game-app/src/styles.css",
           "apps/video-game-app/src/style-bis.css"
