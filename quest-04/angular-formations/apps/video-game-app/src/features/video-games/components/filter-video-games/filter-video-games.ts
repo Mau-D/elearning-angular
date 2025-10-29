@@ -1,5 +1,6 @@
-import { AsyncPipe } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+// import { AsyncPipe } from '@angular/common';
+// import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { filter, Observable, Subscription, tap } from 'rxjs';
 import { GetAllPersonApplicatif } from '../../services/get-all-person.applicatif';
 import { Person } from '../../services/models/person';
@@ -8,7 +9,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-filter-video-games',
-  imports: [AsyncPipe],
+  imports: [],
+  // imports: [AsyncPipe],
   templateUrl: './filter-video-games.html',
   styleUrl: './filter-video-games.css',
 })

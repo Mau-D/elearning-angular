@@ -1,2 +1,7 @@
 <h1>Vidéo game app !!!</h1>
+<mat-slider min="0" max="100" step="1" discrete="">
+  <input matSliderThumb [(ngModel)]="sliderValue" />
+</mat-slider>
+
+<p>Valeur actuelle : {{ sliderValue }}</p>
 <app-list-video-games />
