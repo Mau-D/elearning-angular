@@ -21,7 +21,11 @@ export const appRoutes: Routes = [
     loadChildren: () =>
       import('../features/statistics/statistics.routes').then(
         (item) => item.statisticsRoutes),
-        
+        //Les datas peuvent être utilisés partout dans toutes les routes children
+        data:{
+          title: 'Mes stats de jeux',
+          titleColor: '#25fde9' 
+        },
     resolve: {
       stats: StatisticsResolver,
     },

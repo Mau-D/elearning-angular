@@ -1,6 +1,8 @@
 <p>list-stats works!</p>
 <!-- @let stats = statsS();  Pour l'utilisation d'un SIgnal-->
-@let stats = stats$ | async; @for(stat of stats; track $index){
+@let stats = stats$ | async; @let titleColor = titleColor$ | async;
+<h1 [style.color]="titleColor">{{title$ | async}}</h1>
+@for(stat of stats; track $index){
 <div>
   <h2>{{stat.year}}</h2>
 </div>

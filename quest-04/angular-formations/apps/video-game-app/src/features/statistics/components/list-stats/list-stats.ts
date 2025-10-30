@@ -16,10 +16,16 @@ export class ListStats implements OnInit {
     map<{ [key: string | symbol]: any }, StatsList>((data) => data['stats'])
   );
   // statsS = toSignal(this.stats$); //Utiliser un SIgnal pour les computed ou faire des modifications des données reçues
-
+  protected readonly title$ = this.route.data.pipe(
+    map<{ [key: string | symbol]: any }, string>((data) => data['title'])
+  );
+  protected readonly titleColor$ = this.route.data.pipe(
+    map<{ [key: string | symbol]: any }, string>((data) => data['titleColor'])
+  );
   ngOnInit(): void {
     this.stats$.subscribe((stats) => {
       console.info(stats);
     });
+   
   }
 }
