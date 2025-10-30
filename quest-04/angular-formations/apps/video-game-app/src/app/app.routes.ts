@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { PageNotFound } from '../shared/page-not-found/page-not-found';
 import { videoGamesRoutes } from '../features/video-games/video-games.routes';
+import { StatisticsResolver } from '../features/statistics/resolvers/statistics.resolver';
+import { Title } from '@angular/platform-browser';
 
 // export const appRoutes: Route[] = [ ===> ===>ts reconnait le type Array
 export const appRoutes: Routes = [
@@ -13,14 +15,16 @@ export const appRoutes: Routes = [
   {
     path: 'video-games',
     children: videoGamesRoutes,
-    
   },
   {
     path: 'stats',
     loadChildren: () =>
       import('../features/statistics/statistics.routes').then(
-        (item) => item.statisticsRoutes
-      ),
+        (item) => item.statisticsRoutes),
+        
+    resolve: {
+      stats: StatisticsResolver,
+    },
   },
   // ...videoGamesRoutes,
   {

@@ -1,1 +1,18 @@
 <p>list-stats works!</p>
+<!-- @let stats = statsS();  Pour l'utilisation d'un SIgnal-->
+@let stats = stats$ | async; @for(stat of stats; track $index){
+<div>
+  <h2>{{stat.year}}</h2>
+</div>
+<div class="row">
+  <div class="col">
+    <h3>Nombre de succès</h3>
+    <p>{{stat.nbSuccess}}</p>
+  </div>
+  <div class="col"></div>
+  <div class="col">
+    <h3>Nombre de d'échec</h3>
+    <p>{{stat.nbFailures}}</p>
+  </div>
+</div>
+}
