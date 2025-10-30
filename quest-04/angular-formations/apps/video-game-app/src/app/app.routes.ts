@@ -1,8 +1,9 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 import { PageNotFound } from '../shared/page-not-found/page-not-found';
+import { videoGamesRoutes } from '../features/video-games/video-games.routes';
 
 // export const appRoutes: Route[] = [ ===> ===>ts reconnait le type Array
-export const appRoutes = [
+export const appRoutes: Routes = [
   // {
   //   path: '',
   //   redirectTo:'video-games',
@@ -11,9 +12,14 @@ export const appRoutes = [
   // },
   {
     path: 'video-games',
+    children: videoGamesRoutes,
+    
+  },
+  {
+    path: 'stats',
     loadChildren: () =>
-      import('../features/video-games/video-games.routes').then(
-        (item) => item.videoGamesRoutes
+      import('../features/statistics/statistics.routes').then(
+        (item) => item.statisticsRoutes
       ),
   },
   // ...videoGamesRoutes,
