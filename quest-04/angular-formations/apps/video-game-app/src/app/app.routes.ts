@@ -8,6 +8,10 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     // children: videoGamesRoutes,
   },
+  {
+    path: 'video-games',
+    loadChildren: ()=>import('../features/video-games/video-games.routes').then(item => item.videoGamesRoutes)
+  },
   // ...videoGamesRoutes,
   {
     path: '**',
