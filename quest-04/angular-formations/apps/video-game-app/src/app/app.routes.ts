@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { PageNotFound } from '../shared/page-not-found/page-not-found';
 import { videoGamesRoutes } from '../features/video-games/video-games.routes';
-import { StatisticsResolver } from '../features/statistics/resolvers/statistics.resolver';
+import { statsResolver } from '../features/statistics/resolvers/statistics.resolver';
 import { requireAuthenticatedGuard } from '../features/authentication/guards/require-authenticated-guard';
 import { anthenticationRoutes } from '../features/authentication/authentication.routes';
 
@@ -32,7 +32,7 @@ export const appRoutes: Routes = [
     },
     // canActivate: [requireAuthenticatedGuard],
     resolve: {
-      stats: StatisticsResolver,
+      stats: statsResolver,
     },
   },
   ...anthenticationRoutes,
