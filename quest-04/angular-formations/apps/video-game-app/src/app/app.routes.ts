@@ -16,7 +16,7 @@ export const appRoutes: Routes = [
   {
     path: 'video-games',
     children: videoGamesRoutes,
-    // canActivate: [requireAuthenticatedGuard],
+    canActivate: [requireAuthenticatedGuard],
     title:'Mes jeux vidéos'
   },
   {
