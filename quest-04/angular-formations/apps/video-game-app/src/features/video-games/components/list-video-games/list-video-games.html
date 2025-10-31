@@ -1,3 +1,6 @@
+@let titleRef = title | async;
+<h3>{{titleRef}}</h3>
+
 @if(list.length > 0) {
 <app-filter-video-games />
 <app-table-video-games

@@ -3,7 +3,8 @@
     "@angular/animations": "^20.3.7",
     "@angular/cdk": "^20.2.10",
     "@angular/forms": "^20.0.0 || ^21.0.0",
-    "@angular/material": "^20.2.10"
+    "@angular/material": "^20.2.10",
+    "bootstrap": "^5.3.8"
   },
   "devDependencies": {
     "@angular-devkit/core": "^20.3.7",
