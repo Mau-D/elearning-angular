@@ -10,5 +10,4 @@ export class ComputePipe implements PipeTransform {
     console.info('compute', Math.random()*100)
     return value*100;
   }
-
 }
