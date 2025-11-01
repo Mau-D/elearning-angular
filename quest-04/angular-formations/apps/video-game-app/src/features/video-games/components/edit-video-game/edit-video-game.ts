@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { map, pairwise, switchMap, tap } from 'rxjs';
+import { distinctUntilChanged, map, pairwise, switchMap, tap } from 'rxjs';
 import { UpdateOneVideoGame } from '../../services/update-one-video-game';
 import { VideoGame } from '../../../models/video-games';
 import { GetOneVideoGame } from '../../services/get-one-video-game';
@@ -51,6 +51,7 @@ export class EditVideoGame implements OnInit {
 
   protected readonly detectChanges$ = this.videoGameFormGroup.valueChanges.pipe(
     pairwise(),
+    distinctUntilChanged(),
     takeUntilDestroyed()
   );
 
