@@ -1,6 +1,7 @@
 <!-- @let params = videoGameParamsS(); @if(params){ -->
-@let id = videoGameId();
+@let id = videoGameId(); @let loading = isLoading();
 <p>Video-Game : {{ id }}</p>
+@if(!loading){
 <form [formGroup]="videoGameFormGroup">
   <mat-form-field appearance="fill">
     <mat-label>Titre</mat-label>
@@ -15,3 +16,6 @@
     Sauvegarder
   </button>
 </form>
+}@else{
+<i>Chargement en cours ....</i>
+}
