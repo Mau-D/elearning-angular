@@ -11,5 +11,7 @@
     <input formControlName="year" matInput placeholder="Année" />
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
   </mat-form-field>
-  <button (click)="saveOne()">Sauvegarder</button>
+  <button [disabled]="!videoGameFormGroup.valid" (click)="saveOne()">
+    Sauvegarder
+  </button>
 </form>

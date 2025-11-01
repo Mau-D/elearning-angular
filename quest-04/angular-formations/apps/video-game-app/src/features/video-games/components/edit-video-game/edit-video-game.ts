@@ -5,6 +5,7 @@ import {
   ReactiveFormsModule,
   NgForm,
   FormBuilder,
+  Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,8 +28,8 @@ export class EditVideoGame implements OnInit {
   private readonly formBuilder = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
   protected readonly videoGameFormGroup = this.formBuilder.group({
-    label: new FormControl(''),
-    year: new FormControl(new Date().getFullYear()),
+    label: ['',[Validators.required, Validators.minLength(3)]],
+    year: [new Date().getFullYear(), [Validators.required, Validators.max(new Date().getFullYear())]],
   });
   videoGameParamsS = toSignal(this.route.params);
   // Le computed permet à videoGameId de rester synchronisé avec le paramètre id de l'URL,
@@ -57,6 +58,6 @@ export class EditVideoGame implements OnInit {
     });
   }
   saveOne(): void {
-    console.log('Save One', this.videoGameFormGroup.value);
+    console.log('Save One', this.videoGameFormGroup.valid);
   }
 }
