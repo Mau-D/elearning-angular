@@ -1,3 +1,15 @@
 <!-- @let params = videoGameParamsS(); @if(params){ -->
 @let id = videoGameId();
 <p>Video-Game : {{ id }}</p>
+<form [formGroup]="videoGameFormGroup">
+  <mat-form-field appearance="fill">
+    <mat-label>Titre</mat-label>
+    <input formControlName="label" matInput placeholder="Title" />
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> </mat-form-field
+  ><mat-form-field appearance="fill">
+    <mat-label>Année</mat-label>
+    <input formControlName="year" matInput placeholder="Année" />
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  <button (click)="saveOne()">Sauvegarder</button>
+</form>

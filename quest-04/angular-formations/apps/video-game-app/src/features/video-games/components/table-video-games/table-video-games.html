@@ -1,28 +1,23 @@
 <h1>{{tableTitle()}}</h1>
 
 <table>
+  <tr>
+    <th>Titre</th>
+    <th>Année de parution</th>
+  </tr>
+  <tbody>
+    @for (item of items(); track item.label;){
     <tr>
-        <th>
-            Titre
-        </th>
-        <th>
-            Année de parution
-        </th>
+      <td>{{item.label}}</td>
+      <td>{{item.year}}</td>
+      <td>
+        <button (click)="editOne(item)">Edit</button>
+      </td>
+      <td>
+        <button (click)="deleteSpecificElement(item)">Supprimer</button>
+      </td>
     </tr>
-    <tbody>
-        @for (item of items(); track item.label;){
-        <tr>
-            <td>
-                {{item.label}}
-            </td>
-            <td>
-                {{item.year}}
-            </td>
-            <td>
-                <button (click)="deleteSpecificElement(item)">Supprimer</button>
-            </td>
-        </tr>
-        }
-    </tbody>
+    }
+  </tbody>
 </table>
 <button (click)="clickToRemove()">[-1]</button>

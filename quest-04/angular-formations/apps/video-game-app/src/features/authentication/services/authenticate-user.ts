@@ -27,6 +27,7 @@ export class AuthenticateUser {
   get isAuthenticated(): boolean {
     return this.userStore.value !== undefined;
   }
+  //Pour auth interceptor w token
   get asObservable(): Observable<LoggedUser | undefined>{
     return this.userStore.asObservable();
   }

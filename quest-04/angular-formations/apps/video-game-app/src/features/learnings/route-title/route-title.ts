@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './route-title.html',
   styleUrls: ['./route-title.css'],
 })
-export class RouteTitle implements OnInit {itle = inject(Title)
+export class RouteTitle implements OnInit {
   private readonly title = inject(Title);
 
   ngOnInit(): void {

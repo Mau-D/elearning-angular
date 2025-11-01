@@ -30,7 +30,7 @@ export const appRoutes: Routes = [
       title: 'Mes stats de jeux',
       titleColor: '#25fde9',
     },
-    // canActivate: [requireAuthenticatedGuard],
+    canActivate: [requireAuthenticatedGuard],
     resolve: {
       stats: statsResolver,
     },
