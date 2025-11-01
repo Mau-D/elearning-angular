@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { map, switchMap, tap } from 'rxjs';
+import { map, pairwise, switchMap, tap } from 'rxjs';
 import { UpdateOneVideoGame } from '../../services/update-one-video-game';
 import { VideoGame } from '../../../models/video-games';
 import { GetOneVideoGame } from '../../services/get-one-video-game';
@@ -32,12 +32,6 @@ export class EditVideoGame implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly getOneService = inject(GetOneVideoGame);
   private readonly updateService = inject(UpdateOneVideoGame);
-  protected readonly isLoading = signal(false);  //TODO: Devrait être dans un service dédié
-  private readonly setVideoGame$ = this.route.params.pipe(tap(()=>this.isLoading.set(true)),
-    map<{ [key: string | symbol]: any }, number>((params) => params['id']),
-    switchMap((id) => this.getOneService.getOne(id)),
-    tap(()=>this.isLoading.set(false))
-  );
 
   protected readonly videoGameFormGroup = this.formBuilder.nonNullable.group({
     label: ['', [Validators.required, Validators.minLength(3)]],
@@ -46,6 +40,20 @@ export class EditVideoGame implements OnInit {
       [Validators.required, Validators.max(new Date().getFullYear())],
     ],
   });
+
+  protected readonly isLoading = signal(false); //TODO: Devrait être dans un service dédié
+  private readonly setVideoGame$ = this.route.params.pipe(
+    tap(() => this.isLoading.set(true)),
+    map<{ [key: string | symbol]: any }, number>((params) => params['id']),
+    switchMap((id) => this.getOneService.getOne(id)),
+    tap(() => this.isLoading.set(false))
+  );
+
+  protected readonly detectChanges$ = this.videoGameFormGroup.valueChanges.pipe(
+    pairwise(),
+    takeUntilDestroyed()
+  );
+
   videoGameParamsS = toSignal(this.route.params);
   // Le computed permet à videoGameId de rester synchronisé avec le paramètre id de l'URL,
   // sans que vous ayez à écrire de logique de souscription (subscribe) ou de nettoyage
@@ -71,11 +79,18 @@ export class EditVideoGame implements OnInit {
     //     map<{ [key: string | symbol]: any }, number>(params => params['id']),
     //     switchMap(id => this.getOneService.getOne(id))
     //   )
-      this.setVideoGame$.subscribe({
-        next: (item) => {
-          this.videoGameFormGroup.patchValue(item);
-        },
-      });
+    this.setVideoGame$.subscribe({
+      next: (item) => {
+        this.videoGameFormGroup.patchValue(item);
+      },
+    });
+
+    // this.videoGameFormGroup.valueChanges.pipe(pairwise(), takeUntilDestroyed()).subscribe({
+    //   next: change =>console.info(change),
+    // })
+    this.detectChanges$.subscribe({
+      next: (change) => console.info(change),
+    });
   }
   saveOne(): void {
     const videoGame: VideoGame = {
