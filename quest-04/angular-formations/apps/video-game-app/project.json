@@ -15,7 +15,6 @@
         "outputPath": "dist/apps/video-game-app",
         "browser": "apps/video-game-app/src/main.ts",
         "polyfills": [
-          "zone.js"
         ],
         "tsConfig": "apps/video-game-app/tsconfig.app.json",
         "assets": [
