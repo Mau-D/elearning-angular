@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
@@ -6,6 +6,8 @@ import { MainMenu } from '../shared/menus/main-menu/main-menu';
 // import { ComputePipe } from '../shared/tools/compute-pipe';
 import { AutoFocus } from '../shared/tools/auto-focus';
 import { OnInit } from '@angular/core';
+import { Title } from '../app/stores/title';
+import { Child } from "../features/learnings/pocs/child/child";
 
 @Component({
   imports: [
@@ -15,13 +17,16 @@ import { OnInit } from '@angular/core';
     FormsModule,
     RouterOutlet,
     AutoFocus,
-  ],
+    Child
+],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App implements OnInit {
-  titre = 'First Title';
+export class App implements OnInit{
+  private readonly service = inject(Title);
+  // titreS = signal('First Title');
+  titreS = this.service.titleAsSignalS;
   value = 5;
   myFunction(a: number, b: number): number {
     console.info('Function in template !?');
@@ -29,9 +34,11 @@ export class App implements OnInit {
   }
   ngOnInit() {
     setTimeout(() => {
-      console.info('avant', this.titre);
-      this.titre = 'Second Title';
-      console.info('après', this.titre);
+      console.info('avant', this.titreS);
+      this.service.dispatch('Titre par dispatch');
+      // this.titreS.set('Second Title');
+      // this.titreS.update((oldValue)=>`${oldValue}!!!`);
+      console.info('après', this.titreS);
     }, 1000);
   }
   public sliderValue = 15;
