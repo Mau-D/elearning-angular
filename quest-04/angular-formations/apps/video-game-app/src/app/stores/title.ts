@@ -1,4 +1,4 @@
-import { computed, Injectable, Signal, signal } from '@angular/core';
+import { computed, effect, Injectable, Signal, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -11,6 +11,11 @@ export class Title {
   });
   private readonly title = signal('Mon titre du service');
   private readonly obs$ = toObservable(this.title); //Pour utiliser les opérateurs en le transformant en observable
+ 
+  private readonly currentEffect = effect(()=>{
+    console.info('effect', this.title);
+  })
+ 
   dispatch(title: string): void {
     this.title.set(title);
   }
