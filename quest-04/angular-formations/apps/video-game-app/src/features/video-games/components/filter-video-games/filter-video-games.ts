@@ -1,11 +1,10 @@
 // import { AsyncPipe } from '@angular/common';
 // import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { filter, Observable, Subscription, tap } from 'rxjs';
 import { GetAllPersonApplicatif } from '../../services/get-all-person.applicatif';
 import { Person } from '../../services/models/person';
 import { toSignal } from '@angular/core/rxjs-interop';
-
 
 @Component({
   selector: 'app-filter-video-games',
@@ -15,7 +14,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrl: './filter-video-games.css',
 })
 // export class FilterVideoGames implements OnInit, OnDestroy {
-export class FilterVideoGames  {
+export class FilterVideoGames {
   private readonly subscription = new Subscription();
   private readonly peopleService = inject(GetAllPersonApplicatif);
   // people$: Observable<Person[]> = this.peopleService.getAll().pipe(
@@ -27,7 +26,10 @@ export class FilterVideoGames  {
     filter((items) => items.length > 0),
     tap((items) => console.info(items))
   );
-  people$$ = toSignal(this.people$);//on ne le voit pas, mais appel via un effect et donc appel du subscribe
+  people$$ = toSignal(this.people$); //on ne le voit pas, mais appel via un effect et donc appel du subscribe
+  pegi13People = computed(() =>
+    this.people$$()?.filter((item) => item.age > 13)
+  );
 
   // ngOnInit(): void {
   //   const currentSubscription = this.people$.subscribe({

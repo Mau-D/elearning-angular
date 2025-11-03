@@ -8,3 +8,11 @@
   <option value="{{item.id}}">{{item.surname}}</option>
   }
 </select>
+<select>
+  <!-- computed -->
+  @for (item of pegi13People(); track item.id){
+  <option value="{{item.id}}">{{item.surname}}</option>
+  } @empty {
+  <option>No PEGI 13 found</option>
+  }
+</select>

@@ -5,9 +5,10 @@ import { Title } from '../../../../app/stores/title';
   selector: 'app-child',
   imports: [],
   templateUrl: './child.html',
-  styleUrl: './child.css'
+  styleUrl: './child.css',
 })
 export class Child {
-private readonly service = inject(Title);
-titreS = this.service.titleAsSignalS;
+  private readonly service = inject(Title);
+  titreS = this.service.titleAsSignalS;
+  titleMaj = this.service.asMaj;
 }

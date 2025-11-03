@@ -13,7 +13,7 @@ export class GetAllPersonApplicatif {
       .getAll()
       .pipe(
         map((result) =>
-          result.results.map((item) => ({ id: +item.uid, surname: item.name }))
+          result.results.map((item) => ({ id: +item.uid, surname: item.name, age:10}))
         )
       );
   }
