@@ -1,0 +1,7 @@
+@let items = sessions(); @for (item of items; track item){
+<div>
+  <div>{{item.videoGame.label}}</div>
+</div>
+} @empty {
+<div>Chargement en cours ...</div>
+}

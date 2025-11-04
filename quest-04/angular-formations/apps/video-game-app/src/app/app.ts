@@ -9,6 +9,7 @@ import { OnInit } from '@angular/core';
 import { Title } from '../app/stores/title';
 import { Child } from '../features/learnings/pocs/child/child';
 import { ResumeOne } from "../features/video-games/components/resume-one/resume-one";
+import { ListSessions } from '../features/game-sessions/list-sessions/list-sessions';
 
 @Component({
   imports: [
@@ -19,7 +20,8 @@ import { ResumeOne } from "../features/video-games/components/resume-one/resume-
     RouterOutlet,
     AutoFocus,
     Child,
-    ResumeOne
+    ResumeOne,
+    ListSessions
 ],
   selector: 'app-root',
   templateUrl: './app.html',
