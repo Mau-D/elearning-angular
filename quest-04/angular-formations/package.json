@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx nx serve video-game-app"
+    "start": "npx nx serve video-game-app",
   },
   "private": true,
   "dependencies": {
