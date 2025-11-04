@@ -14,14 +14,14 @@ export class GetListSessions {
             videoGame: { id: 1, label: 'Zelda', year: 2000 },
             beginDate: new Date('2023-01-01T00:00:00'),
             endDate: new Date('2023-07-01T00:00:00'),
-            players: ['Player1', 'Player2'],
+            players: [{id:1, name: 'Paul'},{id:2, name: 'Pauline'}],
             status: 'completed',
           },
           {
             videoGame: { id: 1, label: 'Zelda', year: 2000 },
             beginDate: new Date('2025-01-01T00:00:00'),
             endDate: new Date('2025-10-01T00:00:00'),
-            players: ['Player1', 'Player2'],
+            players: [{id:3, name: 'Joe'},{id:4, name: 'Johan'}],
             status: 'in-progress',
           },
         ];

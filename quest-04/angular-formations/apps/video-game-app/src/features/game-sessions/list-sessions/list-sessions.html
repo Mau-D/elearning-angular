@@ -1,5 +1,22 @@
 <!-- @let items = sessions();  -->
-@let items = sessionRessource.value(); {{sessionRessource.error()?.message}}
+@let items = sessionRessource.value(); @let friends = friendsResource.value();
+<!-- {{sessionRessource.error()?.message}} -->
+<div>
+  <h2>Filtres</h2>
+  <div>
+    Ami-e concerné-e ?
+    <select>
+      <option value="">Tous</option>
+      @for(friend of friends; track friend.id){
+      <option value="{{friend.id}}">{{friend.name}}</option>
+      }@empty { @if(friendsResource.isLoading()){
+      <option>En chargement...</option>
+      }
+      <div>Aucun Amis</div>
+      }
+    </select>
+  </div>
+</div>
 @for (item of items; track item){
 <div>
   <div>{{item.videoGame.label}}</div>

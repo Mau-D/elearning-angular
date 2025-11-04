@@ -4,6 +4,10 @@ export interface GameSession{
     videoGame: VideoGame
     beginDate: Date
     endDate: Date
-    players: string[]
+    players: Friend[]
     status: 'pending' | 'in-progress' | 'completed'
+}
+export interface Friend{
+    id: number,
+    name: string
 }
