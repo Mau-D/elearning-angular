@@ -1,8 +1,10 @@
 import { Component, inject, OnInit, resource, signal } from '@angular/core';
 import { GetListSessions } from '../services/get-list-sessions';
-import { GameSession } from '../models';
+import { GameSession, GameSteam } from '../models';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { GetListFriends } from '../services/get-list-friends';
+import { VideoGame } from '../../models/video-games';
+import { httpResource } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-sessions',
@@ -24,6 +26,10 @@ export class ListSessions implements OnInit {
   protected friendsResource = rxResource({
     defaultValue:[],
     stream:()=> this.serviceFriends.getAll()
+  })
+  //httpResource
+  protected gamesCriticResource = httpResource<GameSteam[]>(()=>'https://api.opencritic.com/api/game', {
+    defaultValue:[]
   })
 
   ngOnInit(): void {

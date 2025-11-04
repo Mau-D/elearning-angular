@@ -17,6 +17,23 @@
     </select>
   </div>
 </div>
+<!-- httpResource Game Steam -->
+<div>
+  <h2>Filtres Games</h2>
+  <div>
+    Les jeux
+    <select>
+      <option value="">Tous</option>
+      @for(game of gamesCriticResource.value(); track game.id){
+      <option value="{{game.id}}">{{game.name}}</option>
+      }@empty { @if(gamesCriticResource.isLoading()){
+      <option>En chargement...</option>
+      }
+      <div>Aucun Amis</div>
+      }
+    </select>
+  </div>
+</div>
 @for (item of items; track item){
 <div>
   <div>{{item.videoGame.label}}</div>

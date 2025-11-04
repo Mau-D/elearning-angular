@@ -11,3 +11,7 @@ export interface Friend{
     id: number,
     name: string
 }
+export interface GameSteam{
+    id: number
+    name:string
+}
