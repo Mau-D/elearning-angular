@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, resource, signal } from '@angular/core';
 import { GetListSessions } from '../services/get-list-sessions';
 import { GameSession } from '../models';
 
@@ -11,9 +11,13 @@ import { GameSession } from '../models';
 export class ListSessions implements OnInit {
   private readonly service = inject(GetListSessions);
   // protected sessions: GameSession[] = [];//Ne pourra pas être mis à jour
-  protected sessions = signal<GameSession[]>([]); //Pourra être mis à jour
+  // protected sessions = signal<GameSession[]>([]); //Pourra être mis à jour
+  protected sessionRessource = resource({
+    defaultValue: [],
+    loader: () => this.service.getAll()
+  })
 
   ngOnInit(): void {
-    this.service.getAll().then((items) => this.sessions.set(items));
+    // this.service.getAll().then((items) => this.sessions.set(items));
   }
 }

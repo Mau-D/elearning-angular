@@ -1,7 +1,12 @@
-@let items = sessions(); @for (item of items; track item){
+<!-- @let items = sessions();  -->
+@let items = sessionRessource.value(); {{sessionRessource.error()?.message}}
+@for (item of items; track item){
 <div>
   <div>{{item.videoGame.label}}</div>
 </div>
-} @empty {
+} @empty { @if(sessionRessource.isLoading()){
 <div>Chargement en cours ...</div>
+}
+<div>Aucune Session disponible</div>
+
 }
